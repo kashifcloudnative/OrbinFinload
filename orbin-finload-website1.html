@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbin Finloan  Service - Loans & Insurance Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Page sections - hide by default */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #667eea;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .logo-text .brand-tagline {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            font-weight: normal;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: block;
+            cursor: pointer;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 0.5rem;
+            background: transparent;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #ffffff;
+            min-width: 220px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #333 !important;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            background: white;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background: #667eea !important;
+            color: white !important;
+            padding-left: 25px;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 5%;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button-outline {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button-outline:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+        }
+
+        /* Services Grid */
+        .quick-services {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .learn-more {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .learn-more:hover {
+            color: #764ba2;
+        }
+
+        /* Features Section */
+        .features {
+            background: #f8f9fa;
+            padding: 80px 5%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .content-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .content-text h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            color: #667eea;
+        }
+
+        .content-text p,
+        .content-text ul {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .content-text ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+
+        .content-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .info-card h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            padding: 80px 5%;
+            background: #f8f9fa;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text h3 {
+            color: #667eea;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        /* Partner Section */
+        .partner-section {
+            padding: 80px 5%;
+        }
+
+        .partner-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .partner-intro {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p {
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-section ul li a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .logo-text .brand-name {
+                font-size: 1.2rem;
+            }
+
+            .logo-text .brand-tagline {
+                font-size: 0.65rem;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                gap: 0;
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+
+            .dropdown::after {
+                display: none;
+            }
+
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(255, 255, 255, 0.95);
+                margin-top: 0.5rem;
+                border-radius: 5px;
+            }
+
+            .dropdown.mobile-active .dropdown-content {
+                display: block;
+            }
+
+            .dropdown-content a {
+                color: #333 !important;
+                padding: 10px 20px;
+                background: rgba(255, 255, 255, 0.95);
+            }
+
+            .dropdown-content a:hover {
+                background: rgba(102, 126, 234, 0.2) !important;
+                color: #667eea !important;
+                padding-left: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero {
+                padding: 80px 5%;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .logo-text .brand-tagline {
+                display: none;
+            }
+
+            .cta-button,
+            .cta-button-outline {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a class="logo" data-page="home">
+                <div class="logo-icon">O</div>
+                <div class="logo-text">
+                    <span class="brand-name">Orbin Finloan </span>
+                    <span class="brand-tagline">Financial Services</span>
+                </div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a data-page="home" class="nav-link active">Home</a></li>
+                <li class="dropdown" id="loanDropdown">
+                    <a class="dropbtn">Loan ▾</a>
+                    <div class="dropdown-content">
+                        <a data-page="personal-loan" class="nav-link">Personal Loan</a>
+                        <a data-page="vehicle-loan" class="nav-link">Vehicle Loan</a>
+                        <a data-page="home-loan" class="nav-link">Home Loan</a>
+                        <a data-page="business-loan" class="nav-link">Business Loan</a>
+                    </div>
+                </li>
+                <li class="dropdown" id="insuranceDropdown">
+                    <a class="dropbtn">Insurance ▾</a>
+                    <div class="dropdown-content">
+                        <a data-page="life-insurance" class="nav-link">Life Insurance</a>
+                        <a data-page="health-insurance" class="nav-link">Health Insurance</a>
+                        <a data-page="term-insurance" class="nav-link">Term Insurance</a>
+                    </div>
+                </li>
+                <li><a data-page="about" class="nav-link">About Us</a></li>
+                <li><a data-page="contact" class="nav-link">Contact Us</a></li>
+                <li><a data-page="partner" class="nav-link">Become Partner</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page-section active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Orbin Finloan  Service</h1>
+                <p>Your Trusted Partner for Loans and Insurance Solutions</p>
+                <p class="hero-subtitle">Get instant approvals, best rates, and expert guidance for all your financial
+                    needs</p>
+                <div class="hero-buttons">
+                    <a class="cta-button" data-page="contact">Apply Now</a>
+                    <a class="cta-button-outline" data-page="about">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-services">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💼</div>
+                        <h3>Loan Services</h3>
+                        <p>Personal, Vehicle, Home, and Business loans with competitive rates and flexible repayment
+                            options</p>
+                        <a class="learn-more" data-page="personal-loan">Explore Loans →</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🛡️</div>
+                        <h3>Insurance Solutions</h3>
+                        <p>Comprehensive Life, Health, and Term insurance coverage for your peace of mind</p>
+                        <a class="learn-more" data-page="life-insurance">View Insurance →</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤝</div>
+                        <h3>Partnership Program</h3>
+                        <p>Join our network and earn attractive commissions with full support and training</p>
+                        <a class="learn-more" data-page="partner">Become Partner →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose Orbin Finloan ?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h4>Quick Approval</h4>
+                        <p>Get instant approvals with minimal documentation and hassle-free process</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <h4>Best Rates</h4>
+                        <p>Competitive interest rates and flexible repayment options tailored for you</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <h4>100% Secure</h4>
+                        <p>Safe and secure process with data protection and privacy guaranteed</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <h4>Expert Support</h4>
+                        <p>Professional guidance from experienced financial advisors 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Get Started?</h2>
+                <p>Apply now and get instant approval for your loan or insurance needs</p>
+                <a class="cta-button" data-page="contact">Contact Us Today</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- PERSONAL LOAN PAGE -->
+    <div id="personal-loan" class="page-section">
+        <section class="page-hero">
+            <h1>Personal Loan</h1>
+            <p>Get instant personal loans with minimal documentation and flexible repayment options</p>
+        </section>
+
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Flexible Personal Loans for Every Need</h2>
+                    <p>Whether you need funds for a wedding, medical emergency, vacation, or any other personal
+                        requirement, our personal loans are designed to meet your financial needs quickly and
+                        efficiently.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Loan amount up to ₹25 lakhs</li>
+                        <li>Instant approval within 24 hours</li>
+                        <li>Minimal documentation required</li>
+                        <li>Flexible tenure from 1 to 5 years</li>
+                        <li>Competitive interest rates starting from 10.99%</li>
+                        <li>No hidden charges or prepayment penalties</li>
+                    </ul>
+
+                    <h3>Eligibility Criteria</h3>
+                    <ul>
+                        <li>Age: 21 to 60 years</li>
+                        <li>Minimum monthly income: ₹15,000</li>
+                        <li>Employment: Salaried or Self-employed</li>
+                        <li>Credit score: 650 or above</li>
+                    </ul>
+                </div>
+                <div class="content-image">💰</div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>Quick Processing</h4>
+                    <p>Get your loan approved and disbursed within 24-48 hours with our streamlined digital process.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Low Interest Rates</h4>
+                    <p>Enjoy competitive interest rates starting from 10.99% per annum with flexible EMI options.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Easy Documentation</h4>
+                    <p>Simple documentation process with just PAN card, Aadhaar, and income proof required.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Apply for a Personal Loan?</h2>
+                <p>Get instant approval and funds in your account within 24 hours</p>
+                <a class="cta-button" data-page="contact">Apply Now</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- VEHICLE LOAN PAGE -->
+    <div id="vehicle-loan" class="page-section">
+        <section class="page-hero">
+            <h1>Vehicle Loan</h1>
+            <p>Drive your dream car or bike home with attractive vehicle loan options</p>
+        </section>
+
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Finance Your Dream Vehicle Today</h2>
+                    <p>Whether you're buying a new car, bike, or commercial vehicle, our vehicle loans offer competitive
+                        interest rates and flexible repayment options to make your purchase affordable.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Loan up to 90% of vehicle's on-road price</li>
+                        <li>Interest rates starting from 8.5% per annum</li>
+                        <li>Tenure up to 7 years</li>
+                        <li>Quick approval within 48 hours</li>
+                        <li>Minimal documentation required</li>
+                        <li>No prepayment or foreclosure charges</li>
+                    </ul>
+
+                    <h3>Types of Vehicle Loans</h3>
+                    <ul>
+                        <li>New Car Loan</li>
+                        <li>Used Car Loan</li>
+                        <li>Two-Wheeler Loan</li>
+                        <li>Commercial Vehicle Loan</li>
+                        <li>Electric Vehicle Loan</li>
+                    </ul>
+
+                    <h3>Eligibility Criteria</h3>
+                    <ul>
+                        <li>Age: 21 to 65 years</li>
+                        <li>Minimum monthly income: ₹20,000</li>
+                        <li>Employment: Salaried or Self-employed</li>
+                        <li>Good credit score (650+)</li>
+                    </ul>
+                </div>
+                <div class="content-image">🚗</div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>Low Interest Rates</h4>
+                    <p>Starting from 8.5% per annum with special offers on new vehicles and electric vehicles.</p>
+                </div>
+                <div class="info-card">
+                    <h4>High Loan Amount</h4>
+                    <p>Get up to 90% financing on your dream vehicle with easy EMI options.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Fast Approval</h4>
+                    <p>Get your vehicle loan approved within 48 hours and drive home your dream vehicle.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Buy Your Dream Vehicle?</h2>
+                <p>Apply now and get pre-approved vehicle loan within 48 hours</p>
+                <a class="cta-button" data-page="contact">Apply for Vehicle Loan</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- HOME LOAN PAGE -->
+    <div id="home-loan" class="page-section">
+        <section class="page-hero">
+            <h1>Home Loan</h1>
+            <p>Turn your dream home into reality with our affordable home loan solutions</p>
+        </section>
+
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Your Dream Home Awaits</h2>
+                    <p>Make your dream of owning a home come true with our flexible home loan options. We offer
+                        competitive interest rates and convenient repayment tenures tailored to your financial
+                        situation.</p>
+
+                    <h3>Home Loan Benefits</h3>
+                    <ul>
+                        <li>Loan up to 90% of property value</li>
+                        <li>Interest rates starting from 8.5% per annum</li>
+                        <li>Tenure up to 30 years</li>
+                        <li>Tax benefits under Section 80C and 24(b)</li>
+                        <li>Quick approval and disbursal</li>
+                        <li>Balance transfer and top-up facilities</li>
+                    </ul>
+
+                    <h3>Types of Home Loans</h3>
+                    <ul>
+                        <li>Home Purchase Loan</li>
+                        <li>Home Construction Loan</li>
+                        <li>Plot Loan</li>
+                        <li>Home Extension Loan</li>
+                        <li>Home Renovation Loan</li>
+                    </ul>
+                </div>
+                <div class="content-image">🏠</div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>Low Interest Rates</h4>
+                    <p>Starting from 8.5% per annum, saving you lakhs over the loan tenure.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Tax Benefits</h4>
+                    <p>Save up to ₹3.5 lakhs annually in tax deductions on principal and interest.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Long Tenure</h4>
+                    <p>Repayment tenure up to 30 years for lower EMIs and better affordability.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Own Your Dream Home?</h2>
+                <p>Apply now and get pre-approved within 48 hours</p>
+                <a class="cta-button" data-page="contact">Apply for Home Loan</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- BUSINESS LOAN PAGE -->
+    <div id="business-loan" class="page-section">
+        <section class="page-hero">
+            <h1>Business Loan</h1>
+            <p>Fuel your business growth with competitive business loan offerings</p>
+        </section>
+
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Grow Your Business with Our Support</h2>
+                    <p>Whether you're starting a new venture or expanding an existing business, our business loans
+                        provide the financial support you need to achieve your entrepreneurial goals.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Loan amount from ₹1 lakh to ₹1 crore</li>
+                        <li>Interest rates starting from 11.5% per annum</li>
+                        <li>Tenure from 1 to 7 years</li>
+                        <li>Minimal collateral requirements</li>
+                        <li>Quick approval within 3-5 business days</li>
+                        <li>Flexible repayment options</li>
+                    </ul>
+
+                    <h3>Types of Business Loans</h3>
+                    <ul>
+                        <li>Working Capital Loan</li>
+                        <li>Business Expansion Loan</li>
+                        <li>Equipment Financing</li>
+                        <li>Machinery Loan</li>
+                        <li>MSME Loan</li>
+                        <li>Startup Business Loan</li>
+                    </ul>
+
+                    <h3>Eligibility Criteria</h3>
+                    <ul>
+                        <li>Business operational for at least 2 years</li>
+                        <li>Annual turnover: Minimum ₹10 lakhs</li>
+                        <li>Age: 21 to 65 years</li>
+                        <li>Good credit score and business track record</li>
+                    </ul>
+                </div>
+                <div class="content-image">💼</div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>High Loan Amount</h4>
+                    <p>Get up to ₹1 crore to meet all your business expansion and working capital needs.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Flexible Terms</h4>
+                    <p>Choose from multiple repayment options tailored to your business cash flow.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Quick Disbursal</h4>
+                    <p>Get funds in your account within 5-7 days after approval with minimal documentation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Scale Your Business?</h2>
+                <p>Apply now and get the funding you need to grow</p>
+                <a class="cta-button" data-page="contact">Apply for Business Loan</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- LIFE INSURANCE PAGE -->
+    <div id="life-insurance" class="page-section">
+        <section class="page-hero">
+            <h1>Life Insurance</h1>
+            <p>Secure your family's future with comprehensive life insurance coverage</p>
+        </section>
+
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Protect What Matters Most</h2>
+                    <p>Life insurance is one of the most important financial decisions you can make. Our life insurance
+                        plans ensure that your loved ones are financially secure even in your absence.</p>
+
+                    <h3>Types of Life Insurance</h3>
+                    <ul>
+                        <li>Term Life Insurance - Pure protection at affordable rates</li>
+                        <li>Whole Life Insurance - Lifelong coverage with savings</li>
+                        <li>ULIP Plans - Insurance + Investment benefits</li>
+                        <li>Endowment Plans - Maturity benefits with protection</li>
+                        <li>Money Back Plans - Periodic payouts during policy term</li>
+                    </ul>
+
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Financial security for your family</li>
+                        <li>Coverage starting from ₹10 lakhs</li>
+                        <li>Tax benefits under Section 80C and 10(10D)</li>
+                        <li>Flexible premium payment options</li>
+                        <li>Critical illness riders available</li>
+                        <li>Accidental death benefit coverage</li>
+                    </ul>
+                </div>
+                <div class="content-image">❤️</div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>Affordable Premiums</h4>
+                    <p>Get comprehensive coverage starting from as low as ₹500 per month.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Tax Savings</h4>
+                    <p>Save taxes up to ₹1.5 lakhs under Section 80C on premium payments.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Quick Claim Settlement</h4>
+                    <p>98% claim settlement ratio with hassle-free documentation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Protect Your Family's Future Today</h2>
+                <p>Get a free quote and compare multiple life insurance plans</p>
+                <a class="cta-button" data-page="contact">Get Free Quote</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- HEALTH INSURANCE PAGE -->
+    <div id="health-insurance" class="page-section">
+        <section class="page-hero">
+            <h1>Health Insurance</h1>
+            <p>Comprehensive health coverage for you and your family</p>
+        </section>
+
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Stay Protected, Stay Healthy</h2>
+                    <p>Medical emergencies can be financially draining. Our health insurance plans ensure you get the
+                        best treatment without worrying about expenses.</p>
+
+                    <h3>Coverage Options</h3>
+                    <ul>
+                        <li>Individual Health Insurance</li>
+                        <li>Family Floater Plans</li>
+                        <li>Senior Citizen Health Insurance</li>
+                        <li>Critical Illness Plans</li>
+                        <li>Top-up Health Plans</li>
+                    </ul>
+
+                    <h3>What's Covered</h3>
+                    <ul>
+                        <li>Hospitalization expenses (room rent, ICU charges)</li>
+                        <li>Pre and post-hospitalization costs</li>
+                        <li>Day care procedures</li>
+                        <li>Ambulance charges</li>
+                        <li>Annual health check-ups</li>
+                        <li>Cashless treatment at network hospitals</li>
+                    </ul>
+                </div>
+                <div class="content-image">🏥</div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>Cashless Treatment</h4>
+                    <p>Access to 10,000+ network hospitals across India for cashless treatment.</p>
+                </div>
+                <div class="info-card">
+                    <h4>No Claim Bonus</h4>
+                    <p>Get up to 50% bonus on sum insured for every claim-free year.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Lifetime Renewability</h4>
+                    <p>Renew your policy for a lifetime with no upper age limit.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Invest in Your Health Today</h2>
+                <p>Compare and buy the best health insurance plans online</p>
+                <a class="cta-button" data-page="contact">Get Health Insurance</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- TERM INSURANCE PAGE -->
+    <div id="term-insurance" class="page-section">
+        <section class="page-hero">
+            <h1>Term Insurance</h1>
+            <p>Pure life protection at the most affordable rates</p>
+        </section>
+
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Maximum Coverage at Minimum Cost</h2>
+                    <p>Term insurance is the purest form of life insurance that provides high coverage at very
+                        affordable premiums. It ensures your family's financial security in your absence.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>High coverage starting from ₹50 lakhs to ₹2 crores</li>
+                        <li>Lowest premium rates in the market</li>
+                        <li>Policy tenure up to 75 years of age</li>
+                        <li>Flexible premium payment options</li>
+                        <li>Additional riders for comprehensive protection</li>
+                        <li>100% tax benefits on premiums paid</li>
+                    </ul>
+
+                    <h3>Types of Term Plans</h3>
+                    <ul>
+                        <li>Level Term Insurance - Fixed coverage throughout</li>
+                        <li>Increasing Term Insurance - Coverage increases over time</li>
+                        <li>Decreasing Term Insurance - Coverage decreases with loan</li>
+                        <li>Return of Premium - Get premiums back on maturity</li>
+                    </ul>
+
+                    <h3>Available Riders</h3>
+                    <ul>
+                        <li>Critical Illness Rider</li>
+                        <li>Accidental Death Benefit Rider</li>
+                        <li>Waiver of Premium Rider</li>
+                        <li>Income Benefit Rider</li>
+                    </ul>
+                </div>
+                <div class="content-image">🛡️</div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>Lowest Premiums</h4>
+                    <p>Get ₹1 crore coverage for as low as ₹600 per month for a 30-year-old.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Tax Benefits</h4>
+                    <p>Premium paid qualifies for deduction under Section 80C up to ₹1.5 lakhs annually.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Easy Online Purchase</h4>
+                    <p>Buy term insurance online in minutes with instant policy issuance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Secure Your Family with Term Insurance</h2>
+                <p>Get a free quote and compare the best term insurance plans</p>
+                <a class="cta-button" data-page="contact">Get Term Insurance Quote</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page-section">
+        <section class="page-hero">
+            <h1>About Us</h1>
+            <p>Your Trusted Financial Partner Since 2010</p>
+        </section>
+
+        <section class="about-section">
+            <h2 class="section-title">Who We Are</h2>
+            <div class="about-content">
+                <div class="content-text">
+                    <p>Orbin Finloan  Service is a leading provider of loan and insurance solutions in India. With over a
+                        decade of experience in the financial services industry, we have helped thousands of individuals
+                        and businesses achieve their financial goals.</p>
+
+                    <h3>Our Mission</h3>
+                    <p>To provide accessible, affordable, and reliable financial products to everyone. We work with top
+                        banks and insurance companies to bring you the best deals and services tailored to your needs.
+                    </p>
+
+                    <h3>Our Vision</h3>
+                    <p>To become India's most trusted and preferred financial services platform, empowering people to
+                        make informed financial decisions and secure their future.</p>
+
+                    <h3>Our Values</h3>
+                    <ul>
+                        <li>Customer First - Your satisfaction is our priority</li>
+                        <li>Transparency - No hidden charges or terms</li>
+                        <li>Integrity - Honest and ethical business practices</li>
+                        <li>Innovation - Leveraging technology for better service</li>
+                        <li>Excellence - Committed to delivering the best</li>
+                    </ul>
+                </div>
+                <div class="content-image">💼</div>
+            </div>
+
+            <div class="info-cards" style="margin-top: 3rem;">
+                <div class="info-card">
+                    <h4>15+ Years Experience</h4>
+                    <p>Over a decade of expertise in financial services industry</p>
+                </div>
+                <div class="info-card">
+                    <h4>50,000+ Happy Customers</h4>
+                    <p>Trusted by thousands of satisfied clients across India</p>
+                </div>
+                <div class="info-card">
+                    <h4>98% Approval Rate</h4>
+                    <p>Industry-leading loan approval and claim settlement rates</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page-section">
+        <section class="page-hero">
+            <h1>Contact Us</h1>
+            <p>Get in touch with our expert team</p>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-container">
+                <h2 class="section-title">Send Us a Message</h2>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="personal-loan">Personal Loan</option>
+                                <option value="vehicle-loan">Vehicle Loan</option>
+                                <option value="home-loan">Home Loan</option>
+                                <option value="business-loan">Business Loan</option>
+                                <option value="life-insurance">Life Insurance</option>
+                                <option value="health-insurance">Health Insurance</option>
+                                <option value="term-insurance">Term Insurance</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Other Ways to Reach Us</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">📞</div>
+                        <h4>Phone</h4>
+                        <p>+91 1800-XXX-XXXX<br>Mon-Sat: 9 AM - 6 PM</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✉️</div>
+                        <h4>Email</h4>
+                        <p>info@orbinFinloan .com<br>24/7 Support</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📍</div>
+                        <h4>Office</h4>
+                        <p>Mumbai, Maharashtra<br>India</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PARTNER PAGE -->
+    <div id="partner" class="page-section">
+        <section class="page-hero">
+            <h1>Become Our Partner</h1>
+            <p>Join India's fastest-growing financial services network</p>
+        </section>
+
+        <section class="partner-section">
+            <div class="partner-content">
+                <p class="partner-intro">Join our growing network of partners and build a successful business with us.
+                    We offer attractive commission structures, comprehensive training, and ongoing support to help you
+                    succeed.</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🤝</div>
+                        <h3>Partnership Benefits</h3>
+                        <p>Earn attractive commissions on every loan and insurance product you sell. Unlimited earning
+                            potential with recurring income opportunities.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📚</div>
+                        <h3>Training & Support</h3>
+                        <p>Comprehensive training programs covering products, sales techniques, and market insights.
+                            Ongoing support from dedicated relationship managers.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>Marketing Tools</h3>
+                        <p>Access to professional marketing materials, digital resources, and promotional campaigns to
+                            help you grow your business.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Partner Requirements</h2>
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>Minimal Investment</h4>
+                    <p>Start your partnership with minimal capital investment. No franchise fees or hidden costs.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Flexible Working</h4>
+                    <p>Work from home or office. Choose your own hours and build your business at your pace.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Quick Onboarding</h4>
+                    <p>Simple registration process with quick approval. Start earning within 7 days of onboarding.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Partner With Us?</h2>
+                <p>Fill out the contact form and our team will get in touch with you within 24 hours</p>
+                <a class="cta-button" data-page="contact">Apply for Partnership</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Orbin Finloan  Service</h3>
+                <p>Your trusted partner for all your loan and insurance needs. We are committed to providing the best
+                    financial solutions with transparency and integrity.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Loan Services</h3>
+                <ul>
+                    <li><a data-page="personal-loan">Personal Loan</a></li>
+                    <li><a data-page="vehicle-loan">Vehicle Loan</a></li>
+                    <li><a data-page="home-loan">Home Loan</a></li>
+                    <li><a data-page="business-loan">Business Loan</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Insurance</h3>
+                <ul>
+                    <li><a data-page="life-insurance">Life Insurance</a></li>
+                    <li><a data-page="health-insurance">Health Insurance</a></li>
+                    <li><a data-page="term-insurance">Term Insurance</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📞 +91 1800-XXX-XXXX</p>
+                <p>✉️ info@orbinFinloan .com</p>
+                <p>📍 Mumbai, Maharashtra, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Orbin Finloan  Service. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // GOOGLE SHEETS INTEGRATION
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+                formMessage.style.display = 'none';
+
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value,
+                    timestamp: new Date().toLocaleString()
+                };
+
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                    .then(() => {
+                        formMessage.textContent = '✅ Thank you! Your form has been submitted successfully.';
+                        formMessage.className = 'form-message success';
+                        formMessage.style.display = 'block';
+                        this.reset();
+                    })
+                    .catch(() => {
+                        formMessage.textContent = '❌ Error submitting form. Please try again.';
+                        formMessage.className = 'form-message error';
+                        formMessage.style.display = 'block';
+                    })
+                    .finally(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    });
+            });
+        }
+
+        // PAGE NAVIGATION
+        function showPage(pageName) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetPage = document.getElementById(pageName);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu) navMenu.classList.remove('active');
+        }
+
+        document.addEventListener('click', function (e) {
+            if (e.target.hasAttribute('data-page')) {
+                e.preventDefault();
+                showPage(e.target.getAttribute('data-page'));
+            }
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const dropbtn = dropdown.querySelector('.dropbtn');
+            if (dropbtn) {
+                dropbtn.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) d.classList.remove('mobile-active');
+                        });
+                        dropdown.classList.toggle('mobile-active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
